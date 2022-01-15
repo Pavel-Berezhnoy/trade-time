@@ -4,6 +4,9 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { VehicleModule } from './vehicle/vehicle.module';
+import { LotsModule } from './lots/lots.module';
+import { BetsModule } from './bets/bets.module';
 
 @Module({
   imports: [
@@ -21,6 +24,9 @@ import { SequelizeModule } from '@nestjs/sequelize';
     }),
     UsersModule,
     AuthModule,
+    VehicleModule,
+    LotsModule,
+    BetsModule,
   ],
   providers: [AppService],
 })

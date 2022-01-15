@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { Lot } from '../lots/lots.model';
 
 interface UserCreationAttrs {
   username: string;
@@ -24,4 +25,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @Column({ type: DataType.STRING, allowNull: false })
   password: string;
+
+  @HasMany(() => Lot)
+  lots: Lot[];
 }
