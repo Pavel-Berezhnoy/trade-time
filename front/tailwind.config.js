@@ -9,8 +9,8 @@ module.exports = {
       'textwhite': '#e0e7ff',
       'app': '#ffffff',
       'textblack': '#0f172a',
-      'test1': '#93c5fd',
-      'test': '#bfdbfe', 
+      'test1': '#cffafe',
+      'test': '#ffffff', 
     },
     screens: {
       '2xl': {'max': '1535px'},
