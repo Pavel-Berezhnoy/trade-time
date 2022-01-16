@@ -11,6 +11,7 @@ import {
 import { User } from 'src/users/users.model';
 import { Vehicle } from 'src/vehicle/vehicle.model';
 import { ApiHideProperty } from '@nestjs/swagger';
+import { Bet } from 'src/bets/bets.model';
 
 interface LotCreationAttrs {
   startPrice: number;
@@ -49,6 +50,9 @@ export class Lot extends Model<Lot, LotCreationAttrs> {
     defaultValue: 'не продано',
   })
   status: string;
+
+  @HasMany(() => Bet)
+  bets: Bet[];
 
   @HasMany(() => Vehicle)
   vehicle: Vehicle[];

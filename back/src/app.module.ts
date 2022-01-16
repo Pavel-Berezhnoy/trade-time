@@ -7,6 +7,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { VehicleModule } from './vehicle/vehicle.module';
 import { LotsModule } from './lots/lots.module';
 import { BetsModule } from './bets/bets.module';
+import { WebsocketsModule } from './websockets/websockets.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { BetsModule } from './bets/bets.module';
     VehicleModule,
     LotsModule,
     BetsModule,
+    WebsocketsModule,
   ],
   providers: [AppService],
 })

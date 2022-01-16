@@ -31,6 +31,10 @@ export class Bet extends Model<Bet, BetCreationAttrs> {
   userId: number;
 
   @ForeignKey(() => Lot)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
   lotId: number;
 
   @Column({

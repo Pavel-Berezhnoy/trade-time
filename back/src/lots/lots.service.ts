@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { Bet } from 'src/bets/bets.model';
 import { Vehicle } from 'src/vehicle/vehicle.model';
 import { VehicleService } from 'src/vehicle/vehicle.service';
 import { CreateLotDto } from './dto/create-lot.dto';
@@ -23,7 +24,7 @@ export class LotsService {
       where: {
         id,
       },
-      include: Vehicle,
+      include: [Vehicle, Bet],
     });
     if (lot) {
       return lot;
@@ -37,10 +38,7 @@ export class LotsService {
       endTime: createLotDto.endTime,
       startPrice: createLotDto.startPrice,
     });
-    const vehical = await this.vehicalService.createVehicle(
-      lot.id,
-      createLotDto.vehical,
-    );
+    await this.vehicalService.createVehicle(lot.id, createLotDto.vehical);
     return await this.lotRepository.findOne({
       where: {
         id: lot.id,

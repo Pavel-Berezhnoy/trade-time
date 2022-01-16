@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import * as moment from 'moment';
 import { LotsService } from 'src/lots/lots.service';
+import { LotGatewayService } from 'src/websockets/websockets.service';
 import { Bet } from './bets.model';
 import CreateBetDto from './dto/create-bet.dto';
 
@@ -10,6 +11,7 @@ export class BetsService {
   constructor(
     @InjectModel(Bet) private betRepository: typeof Bet,
     private lotsService: LotsService,
+    private lotGatewayService: LotGatewayService,
   ) {}
   async createBet(createBetDto: CreateBetDto, user) {
     await this.validateBet(createBetDto);
@@ -17,6 +19,7 @@ export class BetsService {
       ...createBetDto,
       userId: user.id,
     });
+    await this.lotGatewayService.emitNewBet(bet);
     return bet;
   }
 
@@ -39,6 +42,10 @@ export class BetsService {
       );
     }
     return true;
+  }
+
+  async findById(id: number) {
+    return await this.betRepository.findByPk(id);
   }
 
   async findLast() {
