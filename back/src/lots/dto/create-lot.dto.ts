@@ -1,5 +1,11 @@
 import { CreateVehicleDto } from 'src/vehicle/dto/create-vehicle.dto';
-import { IsDate, IsNotEmpty, IsNumber, ValidateNested } from 'class-validator';
+import {
+  IsDate,
+  IsNotEmpty,
+  IsNumber,
+  Min,
+  ValidateNested,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateLotDto {
@@ -12,6 +18,7 @@ export class CreateLotDto {
   @Type(() => Date)
   readonly endTime: Date;
 
+  @Min(0)
   @IsNumber()
   readonly startPrice: number;
 }

@@ -1,4 +1,5 @@
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { Bet } from 'src/bets/bets.model';
 import { Lot } from '../lots/lots.model';
 
 interface UserCreationAttrs {
@@ -28,4 +29,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @HasMany(() => Lot)
   lots: Lot[];
+
+  @HasMany(() => Bet)
+  bets: Bet[];
 }

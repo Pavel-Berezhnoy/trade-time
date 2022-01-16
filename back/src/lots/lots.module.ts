@@ -10,5 +10,6 @@ import { LotsService } from './lots.service';
   imports: [SequelizeModule.forFeature([Lot]), VehicleModule, AuthModule],
   controllers: [LotsController],
   providers: [LotsService],
+  exports: [LotsService],
 })
 export class LotsModule {}
