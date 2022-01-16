@@ -5,12 +5,12 @@ import {
   DataType,
   ForeignKey,
   HasMany,
-  HasOne,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { User } from 'src/users/users.model';
 import { Vehicle } from 'src/vehicle/vehicle.model';
+import { ApiHideProperty } from '@nestjs/swagger';
 
 interface LotCreationAttrs {
   startPrice: number;
@@ -37,6 +37,7 @@ export class Lot extends Model<Lot, LotCreationAttrs> {
   @ForeignKey(() => User)
   userId: number;
 
+  @ApiHideProperty()
   @BelongsTo(() => User)
   user: User;
 

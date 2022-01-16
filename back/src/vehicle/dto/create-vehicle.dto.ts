@@ -1,10 +1,4 @@
-import {
-  IsInt,
-  IsNotEmpty,
-  IsNumber,
-  isNumber,
-  IsNumberString,
-} from 'class-validator';
+import { IsInt, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateVehicleDto {
   @IsNotEmpty()
