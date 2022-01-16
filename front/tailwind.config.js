@@ -11,6 +11,7 @@ module.exports = {
       'textblack': '#0f172a',
       'test1': '#cffafe',
       'test': '#ffffff', 
+      'green': '#20b55d',
     },
     screens: {
       '2xl': {'max': '1535px'},
