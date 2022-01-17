@@ -7,7 +7,6 @@ export class LotGatewayService {
   constructor(private lotGateway: LotGateway) {}
 
   async emitNewBet(bet: Bet) {
-    console.log(bet.lotId);
     await this.lotGateway.server.to(`${bet.lotId}`).emit('new_bet', bet);
   }
 }

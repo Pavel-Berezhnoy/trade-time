@@ -43,6 +43,7 @@ export class BetsService {
     }
     return true;
   }
+  
 
   async findById(id: number) {
     return await this.betRepository.findByPk(id);

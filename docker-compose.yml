@@ -1,5 +1,21 @@
 version: "3.3"
 services:
+  api:
+    image: node:17-bullseye-slim
+    volumes:
+      - ./back:/app
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    working_dir: /app
+    command: sh -c 
+      "npm install -g nest &&
+       npm install &&
+       npm run build &&
+       npm run start:prod
+       "
+    depends_on:
+      - mysql
   mysql:
     image: mysql:latest
     environment:
