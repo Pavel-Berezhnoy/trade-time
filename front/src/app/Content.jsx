@@ -13,7 +13,7 @@ const Content = () => {
             <Route path="/login" element={<Login/>}/>
             <Route path="/register" element={<Register/>}></Route>
             <Route path="/all-lots" element={<AllLots/>}></Route>
-            <Route path="/lot" element={<Lot/>}></Route>
+            <Route path="/lot/:id" element={<Lot/>}></Route>
         </Routes>
     );
 }

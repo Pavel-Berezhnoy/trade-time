@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Filter from "../filters/Filter";
 import TableLots from "../tables/TableLots";
 
