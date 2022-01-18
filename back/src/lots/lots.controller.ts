@@ -1,5 +1,11 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { ApiNotFoundResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiConsumes,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import { FormDataRequest } from 'nestjs-form-data';
 import { Auth } from 'src/auth/auth.decorator';
 import { User } from 'src/users/users.decorator';
 import { CreateLotDto } from './dto/create-lot.dto';
@@ -24,8 +30,10 @@ export class LotsController {
   }
 
   @ApiOperation({ summary: 'Сreating a lot' })
+  @ApiConsumes('multipart/form-data')
   @Auth()
   @Post()
+  @FormDataRequest()
   createLot(@Body() createLotDto: CreateLotDto, @User() user) {
     return this.lotsService.createLot(createLotDto, user);
   }

@@ -9,6 +9,8 @@ import { LotsModule } from './lots/lots.module';
 import { BetsModule } from './bets/bets.module';
 import { WebsocketsModule } from './websockets/websockets.module';
 import { MarksModule } from './marks/marks.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -23,6 +25,9 @@ import { MarksModule } from './marks/marks.module';
       database: process.env.DB_DATABASE,
       models: [],
       autoLoadModels: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
     }),
     UsersModule,
     AuthModule,

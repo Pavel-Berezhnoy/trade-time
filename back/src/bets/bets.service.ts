@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import * as moment from 'moment';
 import { LotsService } from 'src/lots/lots.service';
+import { User } from 'src/users/users.model';
 import { LotGatewayService } from 'src/websockets/websockets.service';
 import { Bet } from './bets.model';
 import CreateBetDto from './dto/create-bet.dto';
@@ -43,15 +44,21 @@ export class BetsService {
     }
     return true;
   }
-  
+
 
   async findById(id: number) {
-    return await this.betRepository.findByPk(id);
+    return await this.betRepository.findOne({
+      where: {
+        id,
+      },
+      include: [User],
+    });
   }
 
   async findLast() {
     return await this.betRepository.findOne({
       order: [['createdAt', 'DESC']],
+      include: [User],
     });
   }
 }

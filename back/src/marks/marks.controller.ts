@@ -8,7 +8,7 @@ import { ImporterService } from './importer.service';
 export class MarksController {
   constructor(private importerService: ImporterService) {}
 
-  @Post()
+  @Post('/import')
   async import(@Body() createMarkModelDto: CreateMarkModelDto) {
     await this.importerService.import(createMarkModelDto);
     return HttpStatus.OK;
