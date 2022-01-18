@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Bet } from 'src/bets/bets.model';
+import { User } from 'src/users/users.model';
 import { Vehicle } from 'src/vehicle/vehicle.model';
 import { VehicleService } from 'src/vehicle/vehicle.service';
 import { CreateLotDto } from './dto/create-lot.dto';
@@ -15,7 +16,7 @@ export class LotsService {
 
   async getAllLots() {
     return await this.lotRepository.findAll({
-      include: Vehicle,
+      include: [Vehicle, Bet, User],
     });
   }
 
