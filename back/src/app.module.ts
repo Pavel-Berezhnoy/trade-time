@@ -8,6 +8,7 @@ import { VehicleModule } from './vehicle/vehicle.module';
 import { LotsModule } from './lots/lots.module';
 import { BetsModule } from './bets/bets.module';
 import { WebsocketsModule } from './websockets/websockets.module';
+import { MarksModule } from './marks/marks.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { WebsocketsModule } from './websockets/websockets.module';
     LotsModule,
     BetsModule,
     WebsocketsModule,
+    MarksModule,
   ],
   providers: [AppService],
 })
