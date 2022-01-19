@@ -44,7 +44,7 @@ export class LotsService {
     });
     await this.vehicalService.createVehicle(lot.id, createLotDto);
     for (const image of createLotDto.images) {
-      await this.lotsImagesService.save(lot.id, image);
+      await this.lotsImagesService.create(lot.id, image);
     }
     return this.getbyId(lot.id);
   }
