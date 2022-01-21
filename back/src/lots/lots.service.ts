@@ -19,7 +19,7 @@ export class LotsService {
 
   async getAllLots() {
     return await this.lotRepository.findAll({
-      include: [Vehicle, Bet, User],
+      include: [Vehicle, Bet, User, LotImage],
     });
   }
 
