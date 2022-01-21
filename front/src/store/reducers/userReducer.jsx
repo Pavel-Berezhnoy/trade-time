@@ -27,7 +27,8 @@ export const userSlice = createSlice(
             builder.addCase(fetchUser.pending,(state) => {
                 state.status = "pending"
             })
-            builder.addCase(fetchUser.fulfilled,(state,action) => {
+            builder.addCase(fetchUser.fulfilled, (state,action) => {
+                console.log(action.payload);
                 state.status = "success";
                 localStorage.setItem('accessToken', action.payload.accessToken);
                 localStorage.setItem('refreshToken', action.payload.refreshToken);

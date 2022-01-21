@@ -13,7 +13,7 @@ export const fetchUser = createAsyncThunk(
 );
 
 export const fetchRegister = createAsyncThunk(
-    'auth/reg',
+    'auth/login',
     async (payload, {rejectWithValue}) => {
         try {
             return await userApi.registration(payload);

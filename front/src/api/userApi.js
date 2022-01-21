@@ -1,16 +1,16 @@
 import instance from "./instance";
 
 export const userApi = {
-    registration: async (data) => {
-        const response = await instance.post(`/auth/register`,{
-            email: data.user.email,
-            password: data.user.password,
+    registration: async (userData) => {
+        const response = await instance.post(`/auth/registration`,{
+            username: userData.username,
+            password: userData.password,
         })
-        return response;
+        return response.data;
     },
     authentication: async (userData) => {
         const response = await instance.post('/auth/login',{
-            email: userData.email,
+            username: userData.username,
             password: userData.password,
         }) 
         return response.data;

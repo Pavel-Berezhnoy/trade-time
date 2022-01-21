@@ -1,6 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useRedirectAfterAuth } from "../../hooks/useRedirectAfterAuth";
+import { useUserInputs } from "../../hooks/useUserInputs";
+import { userActions } from "../../store/reducers/userReducer";
+import { fetchUser } from "../../store/thunks/user";
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const {value, setUsername, setPassword} = useUserInputs();
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(fetchUser(value));
+    }
+    useRedirectAfterAuth()
     return (
         <div className="wrapper mx-auto flex">
             <div className="flex-col bg-app max-w-screen-sm rounded-3xl flex ml-auto mr-auto items-center w-full lg:w-2/3 md:w-3/5">
@@ -13,6 +26,7 @@ const Login = () => {
                             </span>
                         </div>
                         <input
+                            onChange={e => setUsername(e.target.value)}
                             type="text"
                             className="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none px-3 self-center relative  font-roboto text-xl outline-none"
                             placeholder="Логин"
@@ -27,6 +41,7 @@ const Login = () => {
                             </span>
                         </div>
                         <input
+                            onChange={e => setPassword(e.target.value)}
                             type="password"
                             className="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 px-3 relative self-center font-roboto text-xl outline-none"
                             placeholder="Пароль"
@@ -39,7 +54,7 @@ const Login = () => {
                             </span>
                         </div>
                     </div>
-                    <button className="bg-purple py-4 text-center px-17 md:px-12 md:py-4 text-textwhite rounded leading-tight text-xl md:text-base font-sans mt-4 mb-20">
+                    <button onClick={submitHandler} className="bg-purple py-4 text-center px-17 md:px-12 md:py-4 text-textwhite rounded leading-tight text-xl md:text-base font-sans mt-4 mb-20">
                         Войти
                     </button>
                 </form>
