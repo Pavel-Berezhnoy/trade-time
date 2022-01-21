@@ -5,7 +5,7 @@ export const fetchLots = createAsyncThunk(
     'lots',
     async (payload, {rejectWithValue}) => {
         try {
-            return await api.get(payload);
+            return await api.get(`${process.env.REACT_APP_HOST}/${payload}`);
         } catch (error) {
             return rejectWithValue(error.message);
         }

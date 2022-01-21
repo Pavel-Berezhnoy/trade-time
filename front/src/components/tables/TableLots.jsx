@@ -17,7 +17,9 @@ const TableLots = (props) => {
                     </tr>
                 </thead>
                 <tbody className="text-base font-normal text-gray-700">
-                    <LotCard></LotCard>
+                    {props.listLots.length ? props.listLots.map((lot) => {
+                        return <LotCard key={lot.id} lot={lot}></LotCard>
+                    }) : <tr></tr>}
                 </tbody>
             </table>
         </div>
