@@ -4,9 +4,10 @@ import TableBody from "../tables/TableBody";
 import TableHead from "../tables/TableHead";
 
 const OneLotCard = (props) => {
+    console.log(props.lot);
     return (
         <div className="flex-col bg-app shadow-md rounded-3xl flex ml-auto mr-auto p-8 md:mt-4 w-2/3 md:order-2 md:w-full lg:w-3/5 px-6">
-            <img className="max-w-2xl mx-auto object-cover" src="" alt="" />
+            <img className="max-w-2xl mx-auto object-cover" src={`${process.env.REACT_APP_HOST}/images/${props.images[1]?.uri}`} alt="" />
             <h2 className="font-bold text-2xl mt-16 text-white">Описание</h2>
             <Table>
                 <TableHead>

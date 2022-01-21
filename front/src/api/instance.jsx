@@ -13,7 +13,7 @@ instance.interceptors.request.use(
   (config) => {
     const token = TokenService.getAccessToken();
     if (token) {
-      config.headers["Authorization"] = token;
+      config.headers["Authorization"] = `Bearer ${token}`;
     }
     return config;
 },
@@ -27,9 +27,9 @@ instance.interceptors.response.use(
 },
 async (error) => {
   const config = error.config;
-  if (config.url !== "/auth/login" && error.response) {
-    console.log(config._retry);
-    if (error.response.status === 401) {
+  if (config.url !== "/auth/login" && error.response && TokenService.getRefreshToken() !== undefined) {
+    if (error.response.status === 401 && !config._retry) {
+      error._retry = true;
       try {
         const refresh = await instance.post("auth/refresh", {
           refreshToken: TokenService.getRefreshToken(),
@@ -38,12 +38,13 @@ async (error) => {
         TokenService.updateTokens(tokens);
         return instance(config);
       } catch (err) {
-        TokenService.removeTokens()
+        TokenService.removeTokens();
         return Promise.reject(err);
       }
     }
     return Promise.reject(error)
   }
+  return Promise.reject(error)
 })
 
 export default instance;
